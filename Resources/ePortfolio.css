@@ -97,7 +97,7 @@ header{
   background:#222;
   color:#fff !important;
   padding:8px 14px;
-  border-radius:12px;
+  border-radius:999px;
   font-weight:400;
   border:2px solid #222;
   line-height:1;
@@ -294,7 +294,7 @@ main{
 
   background: #2a2a2a;
   border: 2px solid #1b1b1b;
-  border-radius: 18px;
+  border-radius: 16px;
   overflow: hidden;
 
   /* subtle depth, keeps the “card” feel */
@@ -428,7 +428,7 @@ main{
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 14px;
+  border-radius: 16px;
 
   grid-row-end: span 15; /* fallback */
 	
@@ -467,7 +467,7 @@ main{
   max-width: 95vw;
   max-height: 95vh;
   object-fit: contain;
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: 0 20px 60px rgba(0,0,0,.6);
   background: #222;
 }
