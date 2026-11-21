@@ -472,14 +472,27 @@ main{
   background: #222;
 }
 
+/* Four-card variant (Portfolio page) */
+.cards-wrap.cards-4{
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.cards-wrap.cards-4 .card-title{ font-size: 38px; }
+@media (max-width: 1280px){
+  .cards-wrap.cards-4{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1080px){
+  .cards-wrap.cards-4{ grid-template-columns: 1fr; }
+}
+
 /* ===== Video Embed ===== */
 .video-section{
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 24px 18px;
-	
+  padding: 24px 18px 48px;
+
   display: grid;
-  gap: 32px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 24px;
 }
 
 .video-frame{
