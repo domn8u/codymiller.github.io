@@ -180,7 +180,7 @@ main{
   font-size: 18px;
   line-height: 1.55;
   margin:0 auto;
-  max-width: var();
+  max-width: 60ch;
   color:#fff;
   font-weight:400;
 }
@@ -488,8 +488,7 @@ main{
   aspect-ratio: 16 / 9;
 
   background: #222;
-  border-width: 6px;
-  border-color: #ffcc00;
+  border: 6px solid #ffcc00;
   border-radius: 16px;
   overflow: hidden;
 
