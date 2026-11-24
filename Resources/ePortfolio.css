@@ -145,8 +145,7 @@ main{
 .image-frame{
   width: 95%;
   height: 92%;
-  background:#cfefff;
-  background-clip: padding-box;
+  background: var(--borderYellow);
   border: 4px solid var(--borderYellow);
   border-radius: 16px;
   position:relative;
@@ -318,17 +317,21 @@ main{
   position: relative;
   overflow: hidden;
 
-  border: 4px solid var(--borderYellow);
+  /* The frame is an outline drawn ON TOP of the image (not a border around it),
+     so there is no inner clipped edge where a seam can appear */
+  outline: 4px solid var(--borderYellow);
+  outline-offset: -4px;
   border-radius: 14px;
-  background: #111;
-  background-clip: padding-box;
+  background: var(--borderYellow);
   isolation: isolate;
 
-  transition: border-color .45s cubic-bezier(.2,.8,.2,1) .05s;
+  transition: outline-color .45s cubic-bezier(.2,.8,.2,1) .05s,
+              background-color .45s cubic-bezier(.2,.8,.2,1) .05s;
 }
 
 .card:hover .card-media{
-  border-color: #fff;
+  outline-color: #fff;
+  background-color: #fff;
 }
 
 /* KEY: force the image to fill the ratio box */
@@ -500,8 +503,7 @@ main{
   width: 100%;
   aspect-ratio: 16 / 9;
 
-  background: #222;
-  background-clip: padding-box;
+  background: #ffcc00;
   border: 6px solid #ffcc00;
   border-radius: 16px;
   isolation: isolate;
