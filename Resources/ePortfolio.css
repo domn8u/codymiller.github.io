@@ -317,20 +317,16 @@ main{
   position: relative;
   overflow: hidden;
 
-  /* The frame is an outline drawn ON TOP of the image (not a border around it),
-     so there is no inner clipped edge where a seam can appear */
-  outline: 4px solid var(--borderYellow);
-  outline-offset: -4px;
+  /* No border here: the frame is drawn by ::before, a layer ABOVE the image,
+     so the image is never cut off along the inside of the frame's curve (no seam). */
   border-radius: 14px;
-  background: var(--borderYellow);
+  background: var(--borderYellow); /* matches the frame, so the outer edge stays clean */
   isolation: isolate;
 
-  transition: outline-color .45s cubic-bezier(.2,.8,.2,1) .05s,
-              background-color .45s cubic-bezier(.2,.8,.2,1) .05s;
+  transition: background-color .45s cubic-bezier(.2,.8,.2,1) .05s;
 }
 
 .card:hover .card-media{
-  outline-color: #fff;
   background-color: #fff;
 }
 
@@ -359,12 +355,21 @@ main{
   inset: 0;
   z-index: 1;
   pointer-events: none;
+  border-radius: inherit;
 
   background: linear-gradient(
     315deg,
     rgba(255, 204, 0, 1) 0%,
     rgba(255, 204, 0, 0) 65%
   );
+
+  /* The 4px frame, painted on top of the image */
+  box-shadow: inset 0 0 0 4px var(--borderYellow);
+  transition: box-shadow .45s cubic-bezier(.2,.8,.2,1) .05s;
+}
+
+.card:hover .card-media::before{
+  box-shadow: inset 0 0 0 4px #fff;
 }
 
 .card-media::after{
