@@ -71,22 +71,42 @@
       margin: 14px 0 8px;
     }
 
-    .ux-roles{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      list-style: none;
-      padding: 0;
-      margin: 14px 0 24px;
+    /* Project facts row */
+    .ux-facts{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      background: #3a3a3a;
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 18px 0 26px;
     }
-    .ux-roles li{
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 19px;
-      letter-spacing: 1px;
-      color: #222;
-      background: var(--yellow);
-      border-radius: 999px;
-      padding: 4px 14px 2px;
+    .ux-fact{
+      background: #2a2a2a;
+      padding: 14px 18px 16px;
+      margin: 0;
+    }
+    .ux-fact dt{
+      font-family: Montserrat, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin: 0 0 5px;
+    }
+    .ux-fact dd{
+      font-family: Montserrat, sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+      color: #fff;
+      margin: 0;
+    }
+    @media (max-width: 900px){
+      .ux-facts{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px){
+      .ux-facts{ grid-template-columns: 1fr; }
     }
 
     .ux-grid{
@@ -173,7 +193,12 @@
       margin-top: 18px;
     }
 
+    .ux-links{ display: flex; flex-wrap: wrap; gap: 6px 18px; }
+
     .lightbox img{ max-height: 92vh; }
+    /* Full-page screenshot view: scroll the whole page image */
+    .lightbox.full{ overflow-y: auto; align-items: flex-start; }
+    .lightbox.full img{ max-height: none; width: min(1200px, 94vw); margin: 4vh auto; border-radius: 16px; }
 
     @media (max-width: 520px){
       .ux-title-band h1{ font-size: 56px; }
@@ -224,56 +249,67 @@
       <h2 id="p1">LeadershipInstitute.org</h2>
       <a class="ux-site" href="https://www.leadershipinstitute.org" target="_blank" rel="noopener">leadershipinstitute.org</a>
       <p class="ux-summary">Here are some prime examples of projects I worked on that are/were deployed to leadershipinstitute.org during my time managing the website product lane.  The Leadership Library and Programs Catalogue were large projects with numerous subpages that all pull from various data objects through Salesforce and our Payload CMS instance.  I handled the scope and scale/project management, the UI/UX and design/brand compliance, and content of these pages, as well as providing some components coded and handed off to engineering (like the book in the hero of the Leadership Library).</p>
-      <ul class="ux-roles">
-        <li>Visual design</li>
-        <li>UI/UX</li>
-        <li>Content</li>
-        <li>Functionality planning</li>
-        <li>Component code</li>
-      </ul>
+      <dl class="ux-facts">
+        <div class="ux-fact"><dt>My role</dt><dd>Website product lane manager: scope, UX, design, brand compliance, and content</dd></div>
+        <div class="ux-fact"><dt>Platform</dt><dd>Payload CMS, with data pulled from Salesforce</dd></div>
+        <div class="ux-fact"><dt>Built with</dt><dd>Leadership Institute's engineering team, plus components I coded and handed off</dd></div>
+        <div class="ux-fact"><dt>Scope</dt><dd>Leadership Library, Programs Catalogue, their subpages, and the Oklahoma accreditation page</dd></div>
+      </dl>
 
       <div class="ux-grid">
         <article class="ux-card">
-          <button class="ux-shot" type="button" aria-label="Enlarge screenshot of the Leadership Library">
-            <img src="Resources/WebUX/li-resources.jpg" data-gif="Resources/WebUX/li-resources.gif" alt="Leadership Institute Leadership Library page with search, filters, and resource cards" loading="lazy">
+          <button class="ux-shot" type="button" aria-label="View full-page screenshot of the Leadership Library">
+            <img src="Resources/WebUX/li-resources.jpg" data-gif="Resources/WebUX/li-resources.gif" data-full="Resources/WebUX/li-resources-full.jpg" alt="Leadership Institute Leadership Library page with search, filters, and resource cards" loading="lazy">
           </button>
           <div class="ux-card-body">
             <h3>Leadership Library</h3>
             <p>A searchable, filterable library of publications, articles, and stories, with an interactive book in the hero.</p>
-            <a href="https://www.leadershipinstitute.org/resources" target="_blank" rel="noopener">View live page</a>
+            <div class="ux-links">
+              <a href="https://www.leadershipinstitute.org/resources" target="_blank" rel="noopener">View live page</a>
+              <a href="https://web.archive.org/web/20261124052646/https://leadershipinstitute.org/resources" target="_blank" rel="noopener">Archived copy</a>
+            </div>
           </div>
         </article>
 
         <article class="ux-card">
-          <button class="ux-shot" type="button" aria-label="Enlarge screenshot of the Programs Catalogue">
-            <img src="Resources/WebUX/li-programs.jpg" data-gif="Resources/WebUX/li-programs.gif" alt="Leadership Institute Programs Catalogue page with a scrolling wall of program cards and type filters" loading="lazy">
+          <button class="ux-shot" type="button" aria-label="View full-page screenshot of the Programs Catalogue">
+            <img src="Resources/WebUX/li-programs.jpg" data-gif="Resources/WebUX/li-programs.gif" data-full="Resources/WebUX/li-programs-full.jpg" alt="Leadership Institute Programs Catalogue page with a scrolling wall of program cards and type filters" loading="lazy">
           </button>
           <div class="ux-card-body">
             <h3>Programs Catalogue</h3>
             <p>Dozens of trainings organized into a visual wall of programs, with icon filters by training type.</p>
-            <a href="https://www.leadershipinstitute.org/programs" target="_blank" rel="noopener">View live page</a>
+            <div class="ux-links">
+              <a href="https://www.leadershipinstitute.org/programs" target="_blank" rel="noopener">View live page</a>
+              <a href="https://web.archive.org/web/20261124052820/https://leadershipinstitute.org/programs" target="_blank" rel="noopener">Archived copy</a>
+            </div>
           </div>
         </article>
 
         <article class="ux-card">
-          <button class="ux-shot" type="button" aria-label="Enlarge screenshot of a program page">
-            <img src="Resources/WebUX/li-program-clc.jpg" data-gif="Resources/WebUX/li-program-clc.gif" alt="Leadership Institute Campaign Leadership College program page" loading="lazy">
+          <button class="ux-shot" type="button" aria-label="View full-page screenshot of a program page">
+            <img src="Resources/WebUX/li-program-clc.jpg" data-gif="Resources/WebUX/li-program-clc.gif" data-full="Resources/WebUX/li-program-clc-full.jpg" alt="Leadership Institute Campaign Leadership College program page" loading="lazy">
           </button>
           <div class="ux-card-body">
             <h3>Program Pages</h3>
             <p>A shared template across every program page, so each training reads and works the same way.</p>
-            <a href="https://www.leadershipinstitute.org/programs/campaign-leadership-college" target="_blank" rel="noopener">View an example</a>
+            <div class="ux-links">
+              <a href="https://www.leadershipinstitute.org/programs/campaign-leadership-college" target="_blank" rel="noopener">View an example</a>
+              <a href="https://web.archive.org/web/20261124052845/https://leadershipinstitute.org/programs/campaign-leadership-college" target="_blank" rel="noopener">Archived copy</a>
+            </div>
           </div>
         </article>
 
         <article class="ux-card">
-          <button class="ux-shot" type="button" aria-label="Enlarge screenshot of the Oklahoma accreditation page">
-            <img src="Resources/WebUX/li-accred-oklahoma.jpg" data-gif="Resources/WebUX/li-accred-oklahoma.gif" alt="Leadership Institute Oklahoma state-accredited school board member trainings page" loading="lazy">
+          <button class="ux-shot" type="button" aria-label="View full-page screenshot of the Oklahoma accreditation page">
+            <img src="Resources/WebUX/li-accred-oklahoma.jpg" data-gif="Resources/WebUX/li-accred-oklahoma.gif" data-full="Resources/WebUX/li-accred-oklahoma-full.jpg" alt="Leadership Institute Oklahoma state-accredited school board member trainings page" loading="lazy">
           </button>
           <div class="ux-card-body">
             <h3>Oklahoma Accreditation</h3>
             <p>A landing page for Oklahoma school board members who need state-required annual training.</p>
-            <a href="https://www.leadershipinstitute.org/accreditation/oklahoma" target="_blank" rel="noopener">View live page</a>
+            <div class="ux-links">
+              <a href="https://www.leadershipinstitute.org/accreditation/oklahoma" target="_blank" rel="noopener">View live page</a>
+              <a href="https://web.archive.org/web/20261124052909/https://leadershipinstitute.org/accreditation/oklahoma" target="_blank" rel="noopener">Archived copy</a>
+            </div>
           </div>
         </article>
       </div>
@@ -284,40 +320,45 @@
       <h2 id="p2">Leadership Institute On-Demand</h2>
       <a class="ux-site" href="https://www.leadershipinstitute.training" target="_blank" rel="noopener">leadershipinstitute.training</a>
       <p class="ux-summary">I rebuilt Leadership Institute's on-demand training site on the Thinkific learning management system, handling the design, UX, and frontend development.  The development also included the creation of CMS components via Liquid, so staff can update pages without touching code.  This included personalized pages tied to user accounts built on Thinkific's native variables.</p>
-      <ul class="ux-roles">
-        <li>Visual design</li>
-        <li>UI/UX</li>
-        <li>Front-end code</li>
-        <li>CMS components</li>
-        <li>Content</li>
-      </ul>
+      <dl class="ux-facts">
+        <div class="ux-fact"><dt>My role</dt><dd>Designer and front-end developer</dd></div>
+        <div class="ux-fact"><dt>Platform</dt><dd>Thinkific learning management system</dd></div>
+        <div class="ux-fact"><dt>Built with</dt><dd>Liquid templates and editable CMS components</dd></div>
+        <div class="ux-fact"><dt>Personalization</dt><dd>Pages tied to each user's account through Thinkific's native variables</dd></div>
+      </dl>
 
       <div class="ux-grid">
         <article class="ux-card">
-          <button class="ux-shot" type="button" aria-label="Enlarge screenshot of the course catalog">
-            <img src="Resources/WebUX/lit-collections.jpg" data-gif="Resources/WebUX/lit-collections.gif" alt="Leadership Institute On-Demand All Courses catalog with category sidebar, search, and course cards" loading="lazy">
+          <button class="ux-shot" type="button" aria-label="View full-page screenshot of the course catalog">
+            <img src="Resources/WebUX/lit-collections.jpg" data-gif="Resources/WebUX/lit-collections.gif" data-full="Resources/WebUX/lit-collections-full.jpg" alt="Leadership Institute On-Demand All Courses catalog with category sidebar, search, and course cards" loading="lazy">
           </button>
           <div class="ux-card-body">
             <h3>Course Catalog</h3>
             <p>A searchable catalog with category navigation and image-led course cards.</p>
-            <a href="https://www.leadershipinstitute.training/collections" target="_blank" rel="noopener">View live page</a>
+            <div class="ux-links">
+              <a href="https://www.leadershipinstitute.training/collections" target="_blank" rel="noopener">View live page</a>
+              <a href="https://web.archive.org/web/20261124052933/https://www.leadershipinstitute.training/collections" target="_blank" rel="noopener">Archived copy</a>
+            </div>
           </div>
         </article>
 
         <article class="ux-card">
-          <button class="ux-shot" type="button" aria-label="Enlarge screenshot of a course landing page">
-            <img src="Resources/WebUX/lit-course.jpg" data-gif="Resources/WebUX/lit-course.gif" alt="Leadership Institute On-Demand Campaigning 101 course landing page with enroll button and curriculum" loading="lazy">
+          <button class="ux-shot" type="button" aria-label="View full-page screenshot of a course landing page">
+            <img src="Resources/WebUX/lit-course.jpg" data-gif="Resources/WebUX/lit-course.gif" data-full="Resources/WebUX/lit-course-full.jpg" alt="Leadership Institute On-Demand Campaigning 101 course landing page with enroll button and curriculum" loading="lazy">
           </button>
           <div class="ux-card-body">
             <h3>Course Landing Pages</h3>
             <p>Reusable course pages with a clear enroll button, an expandable curriculum, and course details at a glance.</p>
-            <a href="https://www.leadershipinstitute.training/courses/campaigning101" target="_blank" rel="noopener">View an example</a>
+            <div class="ux-links">
+              <a href="https://www.leadershipinstitute.training/courses/campaigning101" target="_blank" rel="noopener">View an example</a>
+              <a href="https://web.archive.org/web/20261124052957/https://www.leadershipinstitute.training/courses/campaigning101" target="_blank" rel="noopener">Archived copy</a>
+            </div>
           </div>
         </article>
       </div>
     </section>
 
-    <p class="ux-note">Screenshots captured November 2026.  Live pages may have changed since.</p>
+    <p class="ux-note">Screenshots and archived copies captured November 2026.  If a live page has changed or gone offline, click its screenshot to see the full page as it looked, or open the archived copy.</p>
   </div>
 </main>
 
@@ -371,7 +412,9 @@
   document.querySelectorAll('.ux-shot').forEach(btn => {
     btn.addEventListener('click', () => {
       const img = btn.querySelector('img');
-      lightboxImg.src = img.getAttribute('data-still') || img.src;
+      lightboxImg.src = img.dataset.full || img.getAttribute('data-still') || img.src;
+      lightbox.classList.toggle('full', !!img.dataset.full);
+      lightbox.scrollTop = 0;
       lightboxImg.alt = img.alt;
       lightbox.classList.add('open');
       lightbox.setAttribute('aria-hidden', 'false');
@@ -380,7 +423,7 @@
   });
 
   function closeLightbox(){
-    lightbox.classList.remove('open');
+    lightbox.classList.remove('open', 'full');
     lightbox.setAttribute('aria-hidden', 'true');
     lightboxImg.src = '';
     document.body.style.overflow = '';
