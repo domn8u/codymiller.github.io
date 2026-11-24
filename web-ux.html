@@ -10,7 +10,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora&family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="Resources/ePortfolio.css">
 
   <style>
@@ -107,6 +107,209 @@
     }
     @media (max-width: 520px){
       .ux-facts{ grid-template-columns: 1fr; }
+    }
+
+    /* Design system snapshot */
+    .ds{
+      background: #2a2a2a;
+      border-radius: 16px;
+      padding: 22px 22px 24px;
+      margin: 20px 0 28px;
+    }
+    .ds-head h3{
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 30px;
+      letter-spacing: 1px;
+      font-weight: 400;
+      color: #fff;
+      margin: 0;
+    }
+    .ds-head p{
+      font-family: Montserrat, sans-serif;
+      font-size: 15px;
+      color: #e5e5e5;
+      margin: 2px 0 16px;
+    }
+    .ds-tokens{
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .ds-swatches, .ds-type{
+      display: grid;
+      gap: 10px;
+      background: #222;
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .ds-swatches{ grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .ds-type{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ds-swatch, .ds-type > div{
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-family: Montserrat, sans-serif;
+      color: #fff;
+      min-width: 0;
+    }
+    .ds-swatch span{
+      display: block;
+      height: 54px;
+      border-radius: 10px;
+      margin-bottom: 6px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
+    }
+    .ds-swatch b, .ds-type b{ font-size: 13px; font-weight: 700; }
+    .ds-swatch code{ font-size: 12px; color: #bdbdbd; font-family: Consolas, monospace; }
+    .ds-type span{ font-size: 46px; line-height: 54px; color: var(--yellow); margin-bottom: 6px; }
+    .ds-type-lora{ font-family: Lora, Georgia, serif; }
+    .ds-type-open{ font-family: "Open Sans", Arial, sans-serif; font-weight: 600; }
+    .ds-type small{ font-size: 12px; color: #bdbdbd; }
+    .ds-grid{
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .ds-tile{
+      margin: 0;
+      background: #222;
+      border-radius: 12px;
+      padding: 16px 16px 10px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .ds-tile img{
+      flex: 1;
+      width: 100%;
+      min-height: 0;
+      object-fit: contain;
+      display: block;
+    }
+    .ds-tile figcaption{
+      font-family: Montserrat, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #bdbdbd;
+      margin-top: 10px;
+    }
+    .ds-quote{ grid-column: span 4; }
+    .ds-nav{ grid-column: span 2; grid-row: span 2; }
+    .ds-map{ grid-column: span 2; }
+    .ds-staff{ grid-column: span 2; justify-content: center; }
+    .ds-expand{ grid-column: span 3; }
+    .ds-icons{ grid-column: span 3; justify-content: center; }
+    .ds-nav img{ max-height: 520px; }
+    @media (max-width: 900px){
+      .ds-tokens{ grid-template-columns: 1fr; }
+      .ds-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .ds-quote, .ds-expand, .ds-icons, .ds-map, .ds-staff{ grid-column: span 2; }
+      .ds-nav{ grid-column: span 2; grid-row: auto; }
+      .ds-nav img{ max-height: 360px; }
+    }
+    @media (max-width: 520px){
+      .ds{ padding: 16px; }
+      .ds-swatches{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    /* Before/after sliders */
+    .ba-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin: 20px 0 6px;
+    }
+    @media (max-width: 900px){ .ba-grid{ grid-template-columns: 1fr; } }
+    .ba{ margin: 0; }
+    .ba-frame{
+      position: relative;
+      aspect-ratio: 6 / 5;
+      overflow: hidden;
+      border-radius: 16px;
+      isolation: isolate;
+      background: #111;
+      box-shadow: 0 10px 22px rgba(0,0,0,.35);
+      user-select: none;
+    }
+    .ba-frame img{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      pointer-events: none;
+    }
+    .ba-before{ clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+    .ba-handle{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: var(--pos);
+      width: 4px;
+      transform: translateX(-50%);
+      background: var(--yellow);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .ba-handle::after{
+      content: "\2194";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--yellow);
+      color: #111;
+      font: 700 22px/42px Montserrat, sans-serif;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,.45);
+    }
+    .ba-frame:focus-within .ba-handle::after{ outline: 3px solid #fff; outline-offset: 3px; }
+    .ba-tag{
+      position: absolute;
+      top: 12px;
+      z-index: 2;
+      font-family: Montserrat, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(0,0,0,.7);
+      border-radius: 999px;
+      padding: 5px 11px;
+      pointer-events: none;
+    }
+    .ba-tag-before{ left: 12px; }
+    .ba-tag-after{ right: 12px; }
+    .ba-frame input[type="range"]{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      opacity: 0;
+      cursor: ew-resize;
+      z-index: 3;
+    }
+    .ba figcaption{
+      font-family: Montserrat, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #e5e5e5;
+      margin-top: 12px;
+    }
+    .ba figcaption strong{ color: var(--yellow); }
+    .ba-note{
+      font-family: Montserrat, sans-serif;
+      font-size: 14px;
+      color: #bdbdbd;
+      margin: 8px 0 26px;
     }
 
     .ux-grid{
@@ -249,12 +452,33 @@
       <h2 id="p1">LeadershipInstitute.org</h2>
       <a class="ux-site" href="https://www.leadershipinstitute.org" target="_blank" rel="noopener">leadershipinstitute.org</a>
       <p class="ux-summary">Here are some prime examples of projects I worked on that are/were deployed to leadershipinstitute.org during my time managing the website product lane.  The Leadership Library and Programs Catalogue were large projects with numerous subpages that all pull from various data objects through Salesforce and our Payload CMS instance.  I handled the scope and scale/project management, the UI/UX and design/brand compliance, and content of these pages, as well as providing some components coded and handed off to engineering (like the book in the hero of the Leadership Library).</p>
-      <dl class="ux-facts">
-        <div class="ux-fact"><dt>My role</dt><dd>Website product lane manager: scope, UX, design, brand compliance, and content</dd></div>
-        <div class="ux-fact"><dt>Platform</dt><dd>Payload CMS, with data pulled from Salesforce</dd></div>
-        <div class="ux-fact"><dt>Built with</dt><dd>Leadership Institute's engineering team, plus components I coded and handed off</dd></div>
-        <div class="ux-fact"><dt>Scope</dt><dd>Leadership Library, Programs Catalogue, their subpages, and the Oklahoma accreditation page</dd></div>
-      </dl>
+      <div class="ds" aria-label="Design system snapshot">
+        <div class="ds-head">
+          <h3>Design System Snapshot</h3>
+          <p>A look inside the Figma components library these pages are built from.</p>
+        </div>
+        <div class="ds-tokens">
+          <div class="ds-swatches">
+            <div class="ds-swatch"><span style="background:#2F3846"></span><b>Navy</b><code>#2F3846</code></div>
+            <div class="ds-swatch"><span style="background:#33477A"></span><b>LI Blue</b><code>#33477A</code></div>
+            <div class="ds-swatch"><span style="background:#E3A243"></span><b>Gold</b><code>#E3A243</code></div>
+            <div class="ds-swatch"><span style="background:#BF2040"></span><b>Red</b><code>#BF2040</code></div>
+            <div class="ds-swatch"><span style="background:#E6E7E8"></span><b>Light</b><code>#E6E7E8</code></div>
+          </div>
+          <div class="ds-type">
+            <div><span class="ds-type-lora">Aa</span><b>Lora</b><small>Headlines</small></div>
+            <div><span class="ds-type-open">Aa</span><b>Open Sans</b><small>Body and labels</small></div>
+          </div>
+        </div>
+        <div class="ds-grid">
+          <figure class="ds-tile ds-quote"><img src="Resources/WebUX/ds-quote.png" alt="Block quote component with photo, quote mark, quote, and attribution" loading="lazy"><figcaption>Block quote</figcaption></figure>
+          <figure class="ds-tile ds-nav"><img src="Resources/WebUX/ds-navcards.png" alt="Interactive navigation card in its default and hover states" loading="lazy"><figcaption>Navigation card, default and hover</figcaption></figure>
+          <figure class="ds-tile ds-map"><img src="Resources/WebUX/ds-map.png" alt="Interactive U.S. map component with a state tooltip" loading="lazy"><figcaption>Interactive state map</figcaption></figure>
+          <figure class="ds-tile ds-staff"><img src="Resources/WebUX/ds-staff.png" alt="Staff card variants with and without headshots" loading="lazy"><figcaption>Staff cards</figcaption></figure>
+          <figure class="ds-tile ds-expand"><img src="Resources/WebUX/ds-expand.png" alt="Expanding card in its collapsed and open states" loading="lazy"><figcaption>Expanding card</figcaption></figure>
+          <figure class="ds-tile ds-icons"><img src="Resources/WebUX/ds-icons.png" alt="Program category icons: activism, campaigns, campus, and career" loading="lazy"><figcaption>Category icons</figcaption></figure>
+        </div>
+      </div>
 
       <div class="ux-grid">
         <article class="ux-card">
@@ -320,12 +544,31 @@
       <h2 id="p2">Leadership Institute On-Demand</h2>
       <a class="ux-site" href="https://www.leadershipinstitute.training" target="_blank" rel="noopener">leadershipinstitute.training</a>
       <p class="ux-summary">I rebuilt Leadership Institute's on-demand training site on the Thinkific learning management system, handling the design, UX, and frontend development.  The development also included the creation of CMS components via Liquid, so staff can update pages without touching code.  This included personalized pages tied to user accounts built on Thinkific's native variables.</p>
-      <dl class="ux-facts">
-        <div class="ux-fact"><dt>My role</dt><dd>Designer and front-end developer</dd></div>
-        <div class="ux-fact"><dt>Platform</dt><dd>Thinkific learning management system</dd></div>
-        <div class="ux-fact"><dt>Built with</dt><dd>Liquid templates and editable CMS components</dd></div>
-        <div class="ux-fact"><dt>Personalization</dt><dd>Pages tied to each user's account through Thinkific's native variables</dd></div>
-      </dl>
+      <div class="ba-grid">
+        <figure class="ba">
+          <div class="ba-frame" style="--pos:50%">
+            <img class="ba-after" src="Resources/WebUX/lit-ba-catalog-after.jpg" alt="After: the rebuilt All Courses catalog filtered to the Governance category" loading="lazy">
+            <img class="ba-before" src="Resources/WebUX/lit-ba-catalog-before.jpg" alt="Before: the old All Courses catalog" loading="lazy">
+            <span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-tag ba-tag-after">After</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <input type="range" min="0" max="100" value="50" aria-label="Drag to compare the old and new course catalog">
+          </div>
+          <figcaption><strong>All Courses.</strong>  The old catalog (archived March 2026) next to the rebuilt catalog, filtered to the Governance category.</figcaption>
+        </figure>
+        <figure class="ba">
+          <div class="ba-frame" style="--pos:50%">
+            <img class="ba-after" src="Resources/WebUX/lit-ba-course-after.jpg" alt="After: the rebuilt Campaigning 101 course page" loading="lazy">
+            <img class="ba-before" src="Resources/WebUX/lit-ba-course-before.jpg" alt="Before: the old Campaigning 101 course page" loading="lazy">
+            <span class="ba-tag ba-tag-before">Before</span>
+            <span class="ba-tag ba-tag-after">After</span>
+            <span class="ba-handle" aria-hidden="true"></span>
+            <input type="range" min="0" max="100" value="50" aria-label="Drag to compare the old and new Campaigning 101 course page">
+          </div>
+          <figcaption><strong>Campaigning 101.</strong>  The old course page (archived March 2025) next to the rebuilt one.</figcaption>
+        </figure>
+      </div>
+      <p class="ba-note">Drag the handle to compare.  "Before" images come from Wayback Machine archives, which didn't save every original photo.</p>
 
       <div class="ux-grid">
         <article class="ux-card">
@@ -404,6 +647,11 @@
         entries.forEach(e => e.isIntersecting && e.intersectionRatio > 0.6 ? play() : stop());
       }, { threshold: [0, 0.6] }).observe(btn);
     }
+  });
+
+  // Before/after sliders
+  document.querySelectorAll('.ba-frame input[type="range"]').forEach(r => {
+    r.addEventListener('input', () => r.closest('.ba-frame').style.setProperty('--pos', r.value + '%'));
   });
 
   const lightbox = document.querySelector('.lightbox');
